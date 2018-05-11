@@ -1,0 +1,78 @@
+
+import pandas as pd
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+import tkinter as tki
+from tkinter import ttk as ttk
+
+
+
+
+
+
+
+
+plyrList = pd.DataFrame(np.empty([11,2]),columns=[['F','S']])
+
+
+root = tki.Tk()
+
+root.minsize(800,500)
+
+l1 = tki.Label(root, text="Fore Name")
+l1.place(x=50,y=5,width=70)
+
+l2 = tki.Label(root, text="Surname")
+l2.place(x=300,y=5,width=70)
+
+nme=[]
+for i in np.arange(1,12):
+    n = "f%i" %i
+    nme.append(n,)
+
+h=1
+for i, text in enumerate(nme):
+    h= i *30
+    tki.Label(root, text=i+1).place(x=10,y=30+h,width=15)
+    e = tki.Entry(root, width=25, name=text)
+    e.place(x=50,y=30+h)
+    e.insert(0, text)
+
+nme2=[]
+for i in np.arange(1,12):
+    n = "s%i" %i
+    nme2.append(n,)
+
+h=1
+for i, text in enumerate(nme2):
+    h= i *30
+    e = tki.Entry(root, width=25, name=text)
+    e.place(x=250,y=30+h)
+    e.insert(0, text)
+
+def BowSave():
+    for i, text in enumerate(nme):
+        plyrList.iloc[i,0] = root.children[text].get()
+    for i, text in enumerate(nme2):
+        plyrList.iloc[i,1] = root.children[text].get()
+
+b1 = tki.Button(root, text="Save", command=BowSave, height=2, width=5)
+b1.place(x=500,y=5)
+
+root.mainloop()
+
+
+
+print(plyrList)
+
+
+
+
+
+
+
+
+
+
